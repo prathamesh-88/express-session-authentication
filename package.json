@@ -1,0 +1,22 @@
+{
+  "name": "express-session-authentication-template",
+  "version": "1.0.0",
+  "description": "An ExpressJS Authentication System with session management through express session.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js"
+  },
+  "author": "dexter",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.3",
+    "mongodb": "^4.7.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
