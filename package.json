@@ -1,7 +1,7 @@
 {
-  "name": "express-session-authentication-template",
+  "name": "express-session-authentication",
   "version": "1.0.0",
-  "description": "An ExpressJS Authentication System with session management through express session.",
+  "description": "An ExpressJS Authentication microservice alongside ExpressJS Session for session management",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
