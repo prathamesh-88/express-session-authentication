@@ -1,14 +1,34 @@
+// Basic Imports
 var fs = require('fs');
-const express = require('express');
 const morgan = require('morgan');
-const app = express();
+const express = require('express');
+const session = require('express-session');
+
+//Import Controllers
+const {add_user, login} = require('./controllers/authentication');
+
+//Import Constants
 const {NODE_ENV, PORT, LOG_DESTINATION} = require('./constants/environment');
-const {add_user, login} = require('./controllers/authenticator');
+
+//Import Middleware
+const {authentication_required} = require('./middleware/authentication')
 
 
+// Initialize Express App
+const app = express();
 
+
+//Middleware declaration
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    saveUninitialized: false
+}))
+
+
 if (NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }else{
@@ -20,34 +40,11 @@ if (NODE_ENV === 'development') {
 
 
 
-app.post('/signup', (req, res) => {
-
-    const user = {
-        fname: req.body.fname,
-        lname: req.body.lname,
-        email: req.body.email,
-        password: req.body.password
-    }
-    add_user(user)
-    .then(result =>{
-        res.send(result);
-    })  
-
-});
-
-
-app.post('/login', (req, res) => {
-    const user = {
-        email: req.body.email,
-        password: req.body.password
-    }
-    login(user)
-    .then(result =>{
-        res.send(result);
-    })
-
-})
-
+app.post('/signup', (req, res) => add_user(req,res));
+app.post('/login', (req, res)  => login(req,res));
+app.get('/secret',authentication_required, (req, res)=>{
+    return res.send(req.session.userid);
+} )
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

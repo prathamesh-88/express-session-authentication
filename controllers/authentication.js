@@ -15,7 +15,7 @@ const {SUCCESS, FAILED} = require('../constants/global.js');
 // Check if user already exists
 async function user_exist(email){
     let result = await find_one_entry('template', 'users', {email: email});
-    // console.log('Inside user exists', result)
+
     if (result.status === SUCCESS){
         return {
             status: true,
@@ -53,8 +53,14 @@ function user_process(user){
 }
 
 // Controller for /signup
-async function add_user(user){
-    let results = {'Default': 'Default'};
+async function add_user(req, res){
+    let user = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email,
+        password: req.body.password
+    }
+    let results;
     let is_existing_user = await user_exist(user.email);
 
     if (is_existing_user.status){
@@ -90,17 +96,24 @@ async function add_user(user){
             }
         }    
     }
-    return results;
+    return res.send(results);
 
 }
 
 // Controller for /login
-async function login(user){
-    let results = {'Default': 'Default'};
+async function login(req, res){
+    const user = {
+        email: req.body.email,
+        password: req.body.password
+    }
+
+    let results;
     const query_result = await find_one_entry('template','users',{email: user.email});  
     if (query_result.status === SUCCESS){
         const password = SHA256(query_result.result.password.salt + user.password).toString();
         if (query_result.result.password.password === password){
+            session= req.session;
+            session.userid = query_result.result._id;
             results = {
                 status: SUCCESS,
                 _id: query_result.result._id,
@@ -117,9 +130,8 @@ async function login(user){
             error: 'User does not exist'
         }
     }
-    return results;
+    return res.send(results);
 }
-
 
 module.exports = {add_user, login};
     

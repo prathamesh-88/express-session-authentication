@@ -1,4 +1,4 @@
-# Basic ExpressJS  Authentication System
+# ExpressJS  Authentication System with Session Management using  Express-Session.
 
 ### An ExpressJS API Gateway that takes care of the following:
 
@@ -14,12 +14,12 @@
 - MongoDB URI. [Click here](https://www.mongodb.com/docs/guides/atlas/connection-string/) for the instruction to setup a free online MongoDB Atlas account. You can use local MongoDB as well.
 
 ### Setup
-1. Browse to the directory `basic-authentication-template` and open the `.env` file in any text editor. Make the following changes. Replace `<Paste your MongoDB URI>` with MongoDB URI 
+1. Browse to the directory `express-session-authentication` and open the `.env` file in any text editor. Make the following changes. Replace `<Paste your MongoDB URI>` with MongoDB URI 
 
 > MONGODB_URI=\<Paste your MongoDB URI here> 
 
 2. Open command line (Cmd/Powershell/Terminal).
-3. Navigate to your current workspace. i.e. basic-authentication-template folder.
+3. Navigate to your current workspace. i.e. express-session-authentication folder.
 4. Enter the following commands:
 > npm install
 > npm start
