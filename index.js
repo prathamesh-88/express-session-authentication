@@ -5,13 +5,13 @@ const express = require('express');
 const session = require('express-session');
 
 //Import Controllers
-const {add_user, login} = require('./controllers/authentication');
+const {add_user, login, logout} = require('./controllers/authentication');
 
 //Import Constants
 const {NODE_ENV, PORT, LOG_DESTINATION} = require('./constants/environment');
 
 //Import Middleware
-const {authentication_required} = require('./middleware/authentication')
+const {authentication_required, redirect_authenticated} = require('./middleware/authentication');
 
 
 // Initialize Express App
@@ -41,10 +41,9 @@ if (NODE_ENV === 'development') {
 
 
 app.post('/signup', (req, res) => add_user(req,res));
-app.post('/login', (req, res)  => login(req,res));
-app.get('/secret',authentication_required, (req, res)=>{
-    return res.send(req.session.userid);
-} )
+app.post('/login', redirect_authenticated, (req, res)  => login(req,res));
+app.post('/logout', (req, res) => { logout(req,res); });
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

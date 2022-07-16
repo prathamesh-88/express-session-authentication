@@ -133,5 +133,22 @@ async function login(req, res){
     return res.send(results);
 }
 
-module.exports = {add_user, login};
+// Controller for /logout
+function logout(req, res){
+    if (req.session.userid){
+        req.session.destroy();
+        return res.send({
+            status: SUCCESS,
+            description: 'Logged out successfully'
+        });
+    }else{
+        return res.send({
+            status: FAILED,
+            description: 'Not logged in!'
+        });
+    }
+
+}
+
+module.exports = {add_user, login, logout};
     

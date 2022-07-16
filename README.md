@@ -6,6 +6,7 @@
 - Check User Information
 - Save user in the MongoDB database
 - Login user by verifying credentials
+- Manages sessions using Express Session and Server's local cache
 - Return appropriate response
 
 ### Requirements
@@ -57,8 +58,17 @@
         _id/error: Return objectID of user if successful and error details if it fails
     }
 
+3. **POST /logout**
+    - Terminates existing session.
+
+
+### Middleware
+
+Certain middleware functions are provided for managing sessions and routes better. Can be found in the `middleware/authentication.js` file.
+
+
 
 #### Postman Collection
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11043007-c50a84c6-9438-44fe-9a05-773e910e4ded?action=collection%2Ffork&collection-url=entityId%3D11043007-c50a84c6-9438-44fe-9a05-773e910e4ded%26entityType%3Dcollection%26workspaceId%3D2d9beaf4-8093-416d-98fb-e5b8bffe85ce#?env%5Bdevelopment%5D=W3sia2V5IjoiYmFzZVVSTCIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQiLCJzZXNzaW9uVmFsdWUiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJzZXNzaW9uSW5kZXgiOjB9XQ==)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11043007-85fcff50-ec5f-4ab0-8102-41e18ac2c3c0?action=collection%2Ffork&collection-url=entityId%3D11043007-85fcff50-ec5f-4ab0-8102-41e18ac2c3c0%26entityType%3Dcollection%26workspaceId%3D2d9beaf4-8093-416d-98fb-e5b8bffe85ce)
 
