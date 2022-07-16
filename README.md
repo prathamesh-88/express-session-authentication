@@ -19,12 +19,13 @@
 
 > MONGODB_URI=\<Paste your MongoDB URI here> 
 
-2. Open command line (Cmd/Powershell/Terminal).
-3. Navigate to your current workspace. i.e. express-session-authentication folder.
-4. Enter the following commands:
+2. In the same `.env` file change the `SESSION_SECRET`. This key is used for sign your session cookies which enables it to check if the cookie has been altered. Set one similar to the sample already provided. 
+3. Open command line (Cmd/Powershell/Terminal).
+4. Navigate to your current workspace. i.e. express-session-authentication folder.
+5. Enter the following commands:
 > npm install
 > npm start
-5. Now you have an ExpressJS application running at port 3000 by default unless you have specified any other port in the `.env` file.
+6. Now you have an ExpressJS application running at port 3000 by default unless you have specified any other port in the `.env` file.
 
 
 ### Endpoints
