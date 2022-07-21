@@ -8,7 +8,7 @@ const session = require('express-session');
 const {add_user, login, logout} = require('./controllers/authentication');
 
 //Import Constants
-const {NODE_ENV, PORT, LOG_DESTINATION} = require('./constants/environment');
+const {NODE_ENV, PORT, LOG_DESTINATION, SESSION_SECRET} = require('./constants/environment');
 
 //Import Middleware
 const {authentication_required, redirect_authenticated} = require('./middleware/authentication');
@@ -22,7 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
-    secret: 'secret',
+    secret: SESSION_SECRET,
     resave: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
     saveUninitialized: false

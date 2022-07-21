@@ -1,5 +1,5 @@
 const path  = require('path');
-const NODE_ENV =  'development'; //'production';
+const NODE_ENV =  'production';
 const LOG_DESTINATION = path.join(__dirname, '../access.logs');
 
 if (NODE_ENV === 'development') {
@@ -12,5 +12,6 @@ module.exports = {
     LOG_DESTINATION,
     NODE_ENV,
     MONGODB_URI : process.env.MONGODB_URI,
-    PORT        : process.env.PORT || 3000
+    PORT        : process.env.PORT || 3000,
+    SESSION_SECRET: process.env.SESSION_SECRET
 }
